@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-gray-100 py-8">
     <div class="max-w-screen-xl mx-auto px-4">
       <div class="flex justify-between items-end">
-        <div>2</div>
+        <div></div>
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">商品列表1</h1>
         <NuxtLink to="/cart" class="flex text-sm text-gray-800 mb-8 cursor-pointer">前往購物車</NuxtLink>
       </div>

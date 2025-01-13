@@ -29,14 +29,17 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const email = ref('');
 const password = ref('');
+const router = useRouter();
 
 const submitLogin = () => {
   // 處理登入邏輯
   console.log('登入資訊:', email.value, password.value);
   window.alert(`歡迎", ${email.value}, "使用者`)
+  router.push('/');
 };
 </script>
 
