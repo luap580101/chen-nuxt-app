@@ -1,7 +1,11 @@
 <template>
   <div class="min-h-screen bg-gray-100 py-8">
     <div class="max-w-screen-xl mx-auto px-4">
-      <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">商品列表</h1>
+      <div class="flex justify-between items-end">
+        <div>2</div>
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">商品列表1</h1>
+        <NuxtLink to="/cart" class="flex text-sm text-gray-800 mb-8 cursor-pointer">前往購物車</NuxtLink>
+      </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <ProductCard v-for="product in products" :key="product.id" :product="product" @add-to-cart="addToCart" />
@@ -42,9 +46,25 @@ const products = ref([
 ]);
 
 const addToCart = (product) => {
-  // 處理加入購物車邏輯
+  // 從 localStorage 獲取現有購物車內容，若沒有則初始化為空陣列
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // 檢查商品是否已經在購物車中
+  const existingProduct = cart.find(item => item.id === product.id);
+
+  if (existingProduct) {
+    // 如果商品已經在購物車中，更新數量
+    existingProduct.quantity += product.quantity;
+  } else {
+    // 如果商品不在購物車中，新增商品
+    cart.push({ ...product });
+  }
+
+  // 將更新後的購物車儲存回 localStorage
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  // 在控制台顯示成功信息
   console.log(`將 ${product.name} 添加到購物車，數量: ${product.quantity}`);
-  // 這裡可以繼續使用 localStorage 或 Vuex/Pinia 來處理購物車
 };
 </script>
 
