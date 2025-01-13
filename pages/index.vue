@@ -5,6 +5,7 @@
       <div class="my-4 flex flex-col gap-4">
         <NuxtLink to="/login">前往 login</NuxtLink>
         <NuxtLink to="/products">前往 購物</NuxtLink>
+        <NuxtLink to="/product/1">前往 商品1</NuxtLink>
       </div>
     </div>
   </div>
